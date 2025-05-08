@@ -1,0 +1,133 @@
+.logo {
+    width: 180px;
+    position: absolute;
+    top: -25px;
+    left: 10px;
+}
+
+.circulo-container {
+    position: relative; /* Torna os filhos posicionáveis */
+    display: flex; /* Torna o container flexível */
+    justify-content: center; /* Alinha os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
+    width: 450px; /* Mesma largura do círculo */
+    height: 400px; /* Mesma altura do círculo */
+    margin-left: 510px;
+    margin-top: 20px;
+}
+
+.meio-circulo {
+    width: 100%; /* Ocupa a largura do container */
+    height: 100%; /* Ocupa a altura do container */
+    background-color: #B0D6D4; /* Cor do círculo */
+    border-radius: 50%; /* Torna o elemento circular */
+    position: absolute; /* Fixa o círculo no container */
+    z-index: 1; /* Garante que o círculo fique atrás do texto */
+    top:-200px;
+}
+
+.texto-circulo {
+    position: relative; /* Permite centralizar o texto */
+    z-index: 2; /* Garante que o texto fique acima do círculo */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    color: #000000; /* Cor do texto */
+    top:-150px;
+}
+
+.texto-circulo h1 {
+    font-size: 30px; /* diminui o tamanho do h1 */
+    font-weight: normal; /* tira o negrito */
+    margin: 0; /* remove espaços extras */
+    line-height: 1.4; /* melhor espaçamento entre linhas */
+}
+
+.texto-progresso {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.texto-lingua {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+* {
+    font-family: 'Sansation', sans-serif;
+}
+
+
+
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background-color: #e1f7f7;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 95%; /* Ocupa 90% da largura do container */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+
+.card h3 {
+    margin: 0 0 10px;
+    color: #355A6C;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #355A6C;
+}
+
+/* As cores alternadas */
+.cor1 {
+    background-color: #d6f0f0;
+}
+
+.cor2 {
+    background-color: #c2ecec;
+}
+
+.cor3 {
+    background-color: #a8e6e6;
+}
+
+.cor4 {
+    background-color: #8fe0e0;
+}
+
+
+.container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin: -180px auto 20px auto;
+}
+
+
+
+
+.lesson p {
+    color:#355A6C;
+}
+
+

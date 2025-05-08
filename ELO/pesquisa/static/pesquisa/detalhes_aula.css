@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+.seta-voltar {
+    font-size: 2em;         /* Aumenta a seta */
+    margin-top: 50px;
+    text-decoration: none;
+    color: #333;
+}
+
+.logo {
+    width: 150px;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+}
+
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.logo a {
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.cabecalho {
+    background-color: #d8f3f0;
+    padding: 30px 20px;
+    border-radius: 10px;
+    width: 20%;               /* Largura definida */
+    box-sizing: border-box;
+    text-align: right;
+    position: relative;
+    top: -15px;
+    margin: 0;
+    margin-left: auto;        /* Isso alinha à direita */
+}
+
+
+
+.cabecalho h2 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.cabecalho p {
+    margin: 0;
+}
+
+.grid-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    clear: both;
+}
+
+.grid-palavras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.galeria-imagens {
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.imagem-item {
+    margin: 10px;
+    text-align: center;
+}
+
+.imagem-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;         /* Garante que todas fiquem do mesmo tamanho sem distorcer */
+    border-radius: 12px;       /* Bordas arredondadas */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra suave (opcional) */
+}
+
+
+.galeria-videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;           /* Espaçamento entre os itens nas colunas */
+    row-gap: 60px;       /* Espaçamento entre as linhas */
+    padding: 10px;
+    justify-content: center; /* Centraliza as linhas */
+}
+
+.video-item {
+    width: 200px;         /* Tamanho fixo dos vídeos */
+    height: 300px;        /* Definindo uma altura fixa para todos os vídeos */
+    text-align: center;
+    /* Garante que nada "vaze" do container */
+    border-radius: 12px;  /* Bordas arredondadas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-item video {
+    width: 100%;          /* O vídeo vai ocupar toda a largura do container */
+    height: 100%;         /* O vídeo vai ocupar toda a altura do container */
+    object-fit: cover;    /* Faz o vídeo preencher o container sem distorcer */
+    border-radius: 12px;  /* Bordas arredondadas no vídeo também */
+}
+

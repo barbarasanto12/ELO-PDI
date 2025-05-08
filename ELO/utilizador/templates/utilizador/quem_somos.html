@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Somos</title>
+    <link rel="stylesheet" href="{% static 'utilizador/quem_somos.css' %}">
+</head>
+<body>
+
+    <header>
+        <a href="{% url 'home' %}">
+        <img src="{% static 'utilizador/images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+    </header>
+
+    <section class="quem-somos">
+        <div class="titulo">
+            <h1>QUEM SOMOS?</h1>
+        </div>
+        
+        <div class="container">
+            <div class="pessoa">
+                <p class="nome">Alina Bobkova</p>
+                <div class="foto"id="foto-alina"></div>
+                <img src="{% static 'utilizador/images/alina.png' %}" alt="Alina" class="Alina">
+                
+            </div>
+
+            <div class="pessoa">
+                <p class="nome">Bárbara Santo</p>
+                <div class="foto" id="foto-barbara"></div>
+                <img src="{% static 'utilizador/images/barbara.png' %}" alt="Barbara" class="Barbara">
+                
+               
+            </div>
+        </div>
+
+        <div class="descricao">
+            <p>Bem-vindo! Somos uma equipa de duas estudantes da licenciatura de Informática de Gestão.
+            Somos uma equipa apaixonada e comprometida </p><p> em oferecer soluções inovadoras e de alta qualidade 
+            para atender às tuas necessidades.</p><p> Aqui, a confiança e a qualidade são dois pilares que sustentam tudo 
+            o que fazemos. Junta-te a nós e faz parte desta nossa jornada de sucesso!</p>
+        </div>
+    </section>
+
+</body>
+</html>
+

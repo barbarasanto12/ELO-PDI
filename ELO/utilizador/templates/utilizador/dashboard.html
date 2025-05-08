@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'utilizador/dashboard.css' %}">    
+</head>
+
+<body>
+    <header>      
+        <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo"> 
+    </header>
+
+    <div class="header">
+        <img src="{% static 'utilizador/images/bandeiraportugal.png' %}" alt="Bandeira de Portugal" class="flag">
+        <span class="titulo">LÍNGUA GESTUAL PORTUGUESA</span>
+    </div>
+    
+    <div class="container">
+        
+        {% for item in aulas_info %}
+    <div class="lesson {% cycle 'cor1' 'cor2' 'cor3' 'cor4' %}">
+    <h2>AULA N° {{ item.aula.ordem }}</h2>
+    <p><strong>{{ item.aula.titulo }}</strong></p>
+    <p>{{ item.aula.descricao }}</p>
+
+    {% if item.estado == 'concluida' %}
+        <button class="button" disabled><strong>CONCLUÍDA</strong></button>
+
+    {% elif item.estado == 'desbloqueada' %}
+        <a href="{% url 'ver_aula' item.aula.id %}">
+            <button class="button"><strong>COMEÇAR</strong></button>
+        </a>
+
+    {% else %}
+
+        <button class="button disabled"><strong>COMEÇAR</strong></button>
+    {% endif %}
+
+</div>
+
+{% endfor %}
+</div>
+<footer class="rodape">
+    <div class="rodape-container">
+        <div class="perfil-dropdown">
+        <a href="#" class="perfil-btn">
+            <img src="{% static 'utilizador/images/perfil.png' %}" alt="Perfil">
+            <p>Perfil</p>
+        </a>
+        <div class="perfil-info">
+            <p><strong>{{ user.username }}</strong></p>
+            <p>{{ user.email }}</p>
+            <a href="{% url 'login' %}">Terminar Sessão</a>
+        </div>
+    </div>
+        <a href="#">
+            <img src="{% static 'utilizador/images/aulas.png' %}" alt="Assistir aulas">
+            <p>Assistir aulas</p>
+        </a>
+            <a href="{% url 'pesquisa' %}">
+            <img src="{% static 'utilizador/images/pesquisa.png' %}" alt="Pesquisar palavras">
+            <p>Pesquisar palavras</p>
+        </a>
+      
+            <a href="{% url 'testes:lista_testes' %}" >
+            <img src="{% static 'utilizador/images/progresso.png' %}" alt="Ver progresso">
+            
+            <p>Ver progresso</p>
+            
+            </a>
+            
+       
+    </div>
+ 
+</footer>
+  
+</body>
+</html>

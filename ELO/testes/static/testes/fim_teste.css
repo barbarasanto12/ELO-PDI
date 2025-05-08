@@ -1,0 +1,102 @@
+.circulo-container {
+    position: relative; /* Torna os filhos posicionáveis */
+    display: flex; /* Torna o container flexível */
+    justify-content: center; /* Alinha os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
+    width: 450px; /* Mesma largura do círculo */
+    height: 400px; /* Mesma altura do círculo */
+    margin-left: 510px;
+}
+
+.meio-circulo {
+    width: 100%; /* Ocupa a largura do container */
+    height: 100%; /* Ocupa a altura do container */
+    background-color: #B0D6D4; /* Cor do círculo */
+    border-radius: 50%; /* Torna o elemento circular */
+    position: absolute; /* Fixa o círculo no container */
+    z-index: 1; /* Garante que o círculo fique atrás do texto */
+    top:-200px;
+}
+
+.texto-circulo {
+    position: relative; /* Permite centralizar o texto */
+    z-index: 2; /* Garante que o texto fique acima do círculo */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    color: #000000; /* Cor do texto */
+    top:-150px;
+}
+
+.mensagem {
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: transparent;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 1.3em;
+    margin-top: -60px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+ul li {
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.boneco {
+    margin-top: 20px;
+    width: 190px;
+    height: auto; 
+}
+
+.conteudo-centralizado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 400px); /* ocupa o que sobra da altura da página abaixo do círculo */
+    text-align: center;
+}
+.botao-final {
+    display: inline-block;
+    background-color:#80B0AE; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.logo {
+    width: 180px;
+    position: absolute;
+    top: -25px;
+    left: 10px;
+}
+* {
+    font-family: 'Sansation', sans-serif;
+}
+
+.feedback-verde {
+    color: green;
+    font-weight: bold;
+}
+
+.feedback-amarelo {
+    color: orange;
+    font-weight: bold;
+}
+
+.feedback-vermelho {
+    color: red;
+    font-weight: bold;
+}
+
+

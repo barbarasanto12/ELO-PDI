@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisar Palavras</title>
+</head>
+<body>
+    <!-- Cabeçalho com estilo igual ao das aulas/testes -->
+    <div class="circulo-container">
+        <div class="meio-circulo"></div>
+        <div class="texto-circulo">
+            <h1>PESQUISA DE PALAVRAS<br>Língua Gestual Portuguesa</h1>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Coluna Esquerda (decoração ou imagem) -->
+        <div class="esquerda">
+            <img src="{% static 'utilizador/images/logo.png' %}" alt="Logo" class="logo">
+        </div>
+
+        <!-- Coluna Direita (conteúdo principal) -->
+        <div class="direita">
+            <!-- Formulário de Pesquisa -->
+            <div class="formulario">
+                <form method="get">
+                    <label for="pesquisa"><strong>Pesquisa palavras específicas:</strong></label><br>
+                    <input type="text" id="pesquisa" name="q" placeholder="Digite uma palavra..." value="{{ request.GET.q }}">
+                    <button type="submit">Pesquisar</button>
+                </form>
+            </div>
+
+            <!-- Filtro por Categorias -->
+            <div class="categorias">
+                <h3>Ou pesquisa por aula concluída:</h3>
+                <ul>
+                    {% for categoria in categorias %}
+                        <li>
+                            <a href="?categoria={{ categoria.id }}" {% if categoria.id|stringformat:"s" == categoria_ativa %}class="ativa"{% endif %}>
+                                {{ categoria.titulo }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Resultados da Pesquisa -->
+            <div class="resultados">
+                <h2>Resultados:</h2>
+                {% if palavras %}
+                    <ul>
+                        {% for palavra in palavras %}
+                            <li>
+                                <img src="{{ palavra.imagem.url }}" alt="{{ palavra.descricao }}" width="100">
+                                <strong>{{ palavra.descricao }}</strong> – Aula: {{ palavra.aula.titulo }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Nenhuma palavra encontrada.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

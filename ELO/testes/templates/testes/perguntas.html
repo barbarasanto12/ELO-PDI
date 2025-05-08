@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ teste.titulo }} - Pergunta</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'testes/perguntas.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="circulo-container">
+            <div class="meio-circulo"></div>
+            <div class="texto-circulo">
+                <h1>TESTE - {{ teste.titulo }}<br>Língua Gestual Portuguesa</h1>
+            </div>
+        </div>
+    </header>
+
+    <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo">
+    
+    {# MOSTRAR A MENSAGEM INICIAL SÓ NA PRIMEIRA PERGUNTA #}
+    {% with teste.pergunta_set.all|first as primeira %}
+        {% if pergunta.id == primeira.id %}
+            <div class="description">
+                <p>{{ teste.mensagem_inicial|linebreaks }}</p>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container-pergunta">
+        <div class="question">
+            <h3>Questão nº {{ pergunta.numero }}</h3>
+            <p>{{ pergunta.texto }}</p>
+        
+            {% if pergunta.imagem %}
+                <img src="{{ pergunta.imagem.url }}" alt="Imagem da Pergunta" class="pergunta-imagem">
+            {% endif %}
+        
+            {% if pergunta.video %}
+                <video width="150" controls>
+                    <source src="{{ pergunta.video.url }}" type="video/mp4">
+                    O seu navegador não suporta vídeo.
+                </video>
+            {% endif %}
+        </div>
+        
+        <div class="answers">
+            {% for resposta in respostas %}
+                <a href="{% url 'testes:verificar_resposta' resposta.id %}" class="answer-box">
+                    {% if resposta.imagem %}
+                        <img src="{{ resposta.imagem.url }}" alt="Opção {{ forloop.counter }}">
+                    {% elif resposta.video %}
+                        <p>Vídeo: {{ resposta.video.url }}</p>  
+                        <video width="200" controls>
+                            <source src="{{ resposta.video.url }}" type="video/mp4">
+                            O seu navegador não suporta vídeo.
+                        </video>
+                    {% elif resposta.texto %}
+                        <p>{{ resposta.texto }}</p>
+                    {% else %}
+                        <p>Sem conteúdo disponível</p>
+                    {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="right-image">
+        <img src="{% static 'utilizador/images/boneco_aulas.png' %}" alt="Boneco" class="boneco">
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'pesquisa/detalhes_aula.css' %}">
+</head>
+
+<div class="logo-voltar">
+  <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo">
+  <a href="{% url 'pesquisa' %}" class="seta-voltar">←</a>
+</div>
+
+
+
+<div class="cabecalho">
+  <h2>PESQUISAR PALAVRAS</h2>
+  <p><strong>Pesquisa por categorias...</strong></p>
+</div>
+
+<div class="galeria-imagens">
+  {% for imagem in imagens %}
+    <div class="imagem-item">
+      <img src="{{ imagem.imagem.url }}" alt="{{ imagem.descricao }}">
+      <br>
+      <small>{{ imagem.descricao }}</small>
+    </div>
+  {% empty %}
+    
+  {% endfor %}
+</div>
+
+
+<div class="galeria-videos">
+  {% for video in videos %}
+    <div class="video-item">
+      <video src="{{ video.video.url }}" controls></video>
+      <p>{{ video.descricao }}</p>
+    </div>
+  {% empty %}
+    <p>Sem vídeos nesta aula.</p>
+  {% endfor %}
+</div>
+
+
