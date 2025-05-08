@@ -20,7 +20,6 @@ from aulas.models import Aula
 
 
 @login_required
-@login_required
 def realizar_teste(request, teste_id):
     teste = get_object_or_404(Teste, id=teste_id)
     perguntas = Pergunta.objects.filter(teste=teste)
@@ -29,6 +28,7 @@ def realizar_teste(request, teste_id):
         respostas_usuario = request.POST
         pontuacao = 0
 
+        
         for pergunta in perguntas:
             resposta_selecionada_id = respostas_usuario.get(f'pergunta_{pergunta.id}')
             if resposta_selecionada_id:
@@ -39,19 +39,17 @@ def realizar_teste(request, teste_id):
                 except Resposta.DoesNotExist:
                     pass
 
-        total_perguntas = perguntas.count()
-        pontuacao_final = (pontuacao / total_perguntas) * 100 if total_perguntas > 0 else 0
-
-        Resultado.objects.create(
+       
+        resultado = Resultado.objects.create(
             teste=teste,
             aluno=request.user,
-            pontuacao=pontuacao_final,
+            pontuacao=pontuacao
         )
 
+       
         return redirect('fim_teste', teste_id=teste.id)
 
     return render(request, 'testes/teste.html', {'teste': teste, 'perguntas': perguntas})
-
 
 
 def resultado_view(request, teste_id, pergunta_id, resposta_id):
@@ -129,8 +127,7 @@ def verificar_resposta_direta(request, resposta_id):
                     pontuacao += 0.2  # Pontuação mínima para outras tentativas
 
             # Calcular percentagem
-            pontuacao_final = (pontuacao / total_perguntas) * 100 if total_perguntas > 0 else 0
-
+            pontuacao_final = pontuacao  # pontuação em valor bruto (ex: 7.4)
 
             # Gravar o resultado
             Resultado.objects.create(
@@ -166,10 +163,7 @@ def fim_teste(request, teste_id):
 
     pontuacao = resultado.pontuacao
     total_perguntas = teste.pergunta_set.count()
-    percentagem = round(pontuacao, 2)
-    acertos = round((pontuacao / 100) * total_perguntas)
-
-
+    percentagem = round((pontuacao / total_perguntas) * 100, 2)
 
     aula_atual = teste.aula
     AulaConcluida.objects.get_or_create(user=request.user, aula=aula_atual)
@@ -180,9 +174,6 @@ def fim_teste(request, teste_id):
         'percentagem': percentagem,
         'aula_atual': aula_atual,
         'teste': teste, 
-         'acertos': acertos,
-        
-
     })
   
 

@@ -62,4 +62,4 @@ def detalhes_aula_view(request, aula_id):
         'aula': aula,
         'imagens': imagens,
         'videos': videos
-    })                      
+    })

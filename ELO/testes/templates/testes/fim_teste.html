@@ -22,18 +22,16 @@
         <div class="mensagem">
             <p>Parabéns por terminares o teu primeiro teste!</p>
         
-
-            <p>Pontuação final: {{ percentagem }}% ({{ pontuacao }} pontos em {{ total_perguntas }} perguntas)</p>
-
-
+<p>Pontuação final: {{ pontuacao }} de {{ total_perguntas }}</p>
+<p>Percentagem: {{ percentagem }}%</p>
 
             {% if pontuacao >= 95 %}
-            <p class="feedback-verde">Excelente! Acertaste quase tudo à primeira!</p>
-            {% elif pontuacao >= 60 %}
-            <p class="feedback-amarelo">Bom trabalho! Ainda podes melhorar um pouco.</p>
-            {% else %}
-             <p class="feedback-vermelho">Não desistas! Tenta rever a matéria e volta a tentar.</p>
-            {% endif %}
+    <p class="feedback-verde">Excelente! Acertaste quase tudo à primeira!</p>
+{% elif pontuacao >= 60 %}
+    <p class="feedback-amarelo">Bom trabalho! Ainda podes melhorar um pouco.</p>
+{% else %}
+    <p class="feedback-vermelho">Não desistas! Tenta rever a matéria e volta a tentar.</p>
+{% endif %}
 
     
             <div class="Boneco">

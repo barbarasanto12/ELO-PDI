@@ -8,7 +8,6 @@
     <title>{{ teste.titulo }} - Pergunta</title>
     <link rel="stylesheet" type="text/css" href="{% static 'testes/perguntas.css' %}">
 </head>
-
 <body>
     <header>
         <div class="circulo-container">
@@ -32,7 +31,7 @@
 
     <div class="container-pergunta">
         <div class="question">
-            <h3>Questão nº {{ pergunta.numero }}</h3>
+            <h3>Questão nº {{ pergunta.id }}</h3>
             <p>{{ pergunta.texto }}</p>
         
             {% if pergunta.imagem %}
@@ -67,6 +66,12 @@
             {% endfor %}
         </div>
     </div>
+
+    {% if mensagem %}
+    <div class="feedback">
+        <p>{{ mensagem }}</p>
+    </div>
+    {% endif %}
 
     <div class="right-image">
         <img src="{% static 'utilizador/images/boneco_aulas.png' %}" alt="Boneco" class="boneco">

@@ -10,11 +10,11 @@
 <body>
 
     {% if not acertou %}
-       
+        <!-- ERROU: mensagem e botão -->
         <div class="circulo-container">
             <div class="meio-circulo"></div>
             <div class="texto-circulo">
-                <h1>TESTE - {{ teste.titulo }}<br>Língua Gestual Portuguesa</h1>
+                <h1>TESTE - ALFABETO<br>Língua Gestual Portuguesa<br></h1>
             </div>
         </div>
         <div class="mensagem">
@@ -30,7 +30,7 @@
 
         <div class="container-resposta">
             <div class="left-content">
-                
+                <!-- Este botão redireciona para a pergunta original -->
                 <a href="{% url 'testes:perguntas' teste_id=pergunta.teste.id pergunta_id=pergunta.id %}">
                     <button class="botao">Tentar de novo</button>
                 </a>
@@ -41,11 +41,11 @@
         </div>
 
     {% else %}
-      
+        <!-- ACERTOU: mostrar próxima pergunta -->
         <div class="circulo-container-CERTO">
             <div class="meio-circulo-CERTO"></div>
             <div class="texto-circulo-CERTO">
-                <h1>TESTE <br>Língua Gestual Portuguesa</h1>
+                <h1>TESTE - ALFABETO<br>Língua Gestual Portuguesa<br></h1>
             </div>
         </div>
 
@@ -59,9 +59,9 @@
             {% endif %}
         </div>
 
-       
+        <!-- Próxima pergunta -->
         <div class="question">
-            <h3>Questão nº {{ proxima_pergunta.numero }}</h3>
+            <h3>Questão nº {{ proxima_pergunta.id }}</h3>
             <p>{{ proxima_pergunta.texto }}</p>
         </div>
 

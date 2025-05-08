@@ -28,7 +28,6 @@ class Pergunta(models.Model):
     tipo = models.CharField(max_length=10, choices=TESTE_TIPO_CHOICES, default='imagem')
     video = models.FileField(upload_to='videos_perguntas/', blank=True, null=True)  # Só se for tipo vídeo
     imagem = models.ImageField(upload_to='perguntas/', blank=True, null=True)  # Só se for tipo imagem
-    numero = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.texto
