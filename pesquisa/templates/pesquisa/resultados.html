@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Palavras</title>
+    <link rel="stylesheet" href="{% static 'pesquisa/resultados.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="{% url 'dashboard' %}">
+        <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo">
+    </a>
+
+    <div class="left-side"></div> 
+    <div class="circulo-container">
+        <div class="meio-circulo">
+            <div class="texto-circulo">
+                <h1>PESQUISAR PALAVRAS E FRASES</h1>
+            </div>
+        </div>
+        <div class="conteudo-direito">
+    <h1 class="titulo-pesquisa">Pesquisa palavras específicas...</h1>
+    <form method="get" class="form-pesquisa">
+        <button type="submit" class="botao-pesquisa">
+            <i class="fas fa-search"></i>
+        </button>
+        <input type="text" name="q" placeholder="Pesquisar palavras..." value="{{ query }}" class="input-pesquisa">
+    </form>
+    <hr>
+
+    <div class="layout-pesquisa">
+        <!-- Coluna da lista de aulas -->
+        <div class="coluna-aulas">
+            <h2>Pesquisa por categorias...</h2>
+            <ul class="categorias">
+                {% for aula in aulas_concluidas %}
+                    <li><a href="{% url 'detalhes_aula' aula.id %}">{{ aula.titulo }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Coluna da galeria -->
+        <div class="coluna-galeria">
+            {% if query and resultados_imagens %}
+                <h3>Imagens encontradas</h3>
+                <div class="galeria">
+                    {% for img in resultados_imagens %}
+                        <div class="item-galeria">
+                            <img src="{{ img.imagem.url }}" alt="{{ img.descricao }}">
+                            <div class="descricao-aula">
+                                <small>{{ img.descricao }}</small>
+                                <em>Aula: {{ img.aula.titulo }}</em>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% elif query %}
+              
+            {% endif %}
+
+            {% if resultados_videos %}
+                <h3>Vídeos encontrados</h3>
+                <div class="galeria">
+                    {% for vid in resultados_videos %}
+                        <div class="item-galeria">
+                            <video controls width="200">
+                                <source src="{{ vid.video.url }}" type="video/mp4">
+                            
+                            </video>
+                            <div class="descricao-aula">
+                                <small>{{ vid.descricao }}</small>
+                                <em>Aula: {{ vid.aula.titulo }}</em>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

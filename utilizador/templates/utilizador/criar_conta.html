@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="{% static 'utilizador/criar_conta.css' %}">
+</head>
+<body>
+    <div class="container">
+       
+        <div class="left-side"></div> 
+            <div class="circulo"></div>
+        </div>
+
+        <a href="{% url 'home' %}">
+        <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo">
+        </a>
+
+     
+        <div class="right-side">
+            <h1>CRIAR CONTA</h1>
+            <form method="POST" action="{% url 'criar_conta' %}">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="errors">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+                <label for="{{ form.username.id_for_label }}">Nome</label>
+                {{ form.username }}
+            
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+            
+                <label for="{{ form.password1.id_for_label }}">Password</label>
+                {{ form.password1 }}
+            
+                <label for="{{ form.password2.id_for_label }}">Confirmar Password</label>
+                {{ form.password2 }}
+            
+                <button type="submit" class="botao-azul">CRIAR CONTA</button>
+            </form>
+            
+            <p>Já tens uma conta? Faz <a href="{% url 'login' %}">LOGIN</a></p>
+        </div>
+    </div>
+</body>
+</html>

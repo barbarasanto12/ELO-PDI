@@ -1,0 +1,147 @@
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'aulas/ver_aula.css' %}">
+</head>
+<body>
+
+{% block content %}
+<div class="circulo-container">
+    <div class="meio-circulo"></div>
+    <div class="texto-circulo">
+        <h1>{{ aula.titulo }}<br>Língua Gestual Portuguesa<br><small>Aula nº {{ aula.numero }}</small></h1>
+    </div>
+</div>
+
+<div class="galeria">
+    {% for imagem in aula.imagens.all %}
+      <div class="imagem-container">
+        {% if imagem.descricao %}
+          <h3 class="imagem-descricao">{{ imagem.descricao }}</h3>
+        {% endif %}
+        <img src="{{ imagem.imagem.url }}" alt="Imagem da aula">
+      </div>
+    {% endfor %}
+  </div>
+  
+<div class="videos">
+  {% for video in aula.videos.all %}
+    <div class="video-container">
+      {% if video.descricao %}
+        <h3 class="video-descricao">{{ video.descricao }}</h3>
+      {% endif %}
+      <video width="640" height="360" controls>
+        <source src="{{ video.video.url }}" type="video/mp4">
+        O teu navegador não suporta vídeos HTML5.
+      </video>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="feedback">
+    <h3>FEEDBACK</h3>
+  
+    {% if feedback_instance %}
+        <p>Simplicidade: 
+            {% for i in "12345" %}
+                {% if i <= feedback_instance.simplicidade %}&#9733;{% else %}&#9734;{% endif %}
+            {% endfor %}
+        </p>
+        <p>Interatividade: 
+            {% for i in "12345" %}
+                {% if i <= feedback_instance.interatividade %}&#9733;{% else %}&#9734;{% endif %}
+            {% endfor %}
+        </p>
+        <p>Clareza na tradução: 
+            {% for i in "12345" %}
+                {% if i <= feedback_instance.clareza %}&#9733;{% else %}&#9734;{% endif %}
+            {% endfor %}
+        </p>
+        <p>Planeamento da aula: 
+            {% for i in "12345" %}
+                {% if i <= feedback_instance.planeamento %}&#9733;{% else %}&#9734;{% endif %}
+            {% endfor %}
+        </p>
+    {% else %}
+        <p>Dá-nos o teu feedback e ajuda-nos a melhorar a tua experiência!</p>
+  
+        <div id="feedback-form">
+            <form method="POST">
+                {% csrf_token %}
+                {% for categoria in categorias_feedback %}
+                    <div class="rating-group" data-cat="{{ categoria }}">
+                        <span class="rating-label">{{ categoria|capfirst }}:</span>
+                        {% for i in "12345" %}
+                            <span class="star" data-value="{{ i }}">&#9733;</span>
+                        {% endfor %}
+                        <input type="hidden" name="{{ categoria }}" value="0">
+                    </div>
+                {% endfor %}
+                <button id="btn-submit-feedback">Enviar Feedback</button>
+            </form>
+        </div>
+    {% endif %}
+  </div>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+     
+      document.querySelectorAll('.rating-group').forEach(group => {
+          const hidden = group.querySelector('input[type=hidden]');
+          const stars  = group.querySelectorAll('.star');
+          stars.forEach((star, idx) => {
+              star.addEventListener('click', () => {
+                  hidden.value = idx + 1;
+                  stars.forEach((s, i) => s.classList.toggle('selected', i <= idx));
+              });
+          });
+      });
+  
+     
+      const btn = document.getElementById('btn-submit-feedback');
+      if (btn) {
+          btn.addEventListener('click', e => {
+              e.preventDefault();
+              const formData = new FormData(document.querySelector('#feedback-form form'));
+              fetch("{% url 'submit_feedback' aula.pk %}", {
+                  method: 'POST',
+                  headers: {'X-CSRFToken': formData.get('csrfmiddlewaretoken')},
+                  body: formData
+              })
+              .then(r => r.json())
+              .then(json => {
+                  if (json.status === 'ok') {
+                      alert(json.message);
+                      e.target.disabled = true;
+                  } else {
+                      alert('Erro: ' + (json.message || 'Tente novamente'));
+                  }
+              });
+          });
+      }
+  });
+  </script>
+  
+  {% endblock %}
+  <div class="botao-container">
+  
+      
+        <a href="{% url 'testes:pergunta_view' teste_id=teste.id pergunta_numero=primeira_pergunta_numero %}">
+            <button>REALIZAR TESTE</button>
+    </a>
+</div>
+      
+  </body>
+  </html>
+  
+
+  
+  
+

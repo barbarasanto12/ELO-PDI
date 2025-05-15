@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+     <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <title>{{ teste.titulo }} - Fim do Teste</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'testes/fim_teste.css' %}">
+    
+</head>
+<body>
+    <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo">
+    <div class="circulo-container">
+        <div class="meio-circulo"></div>
+        <div class="texto-circulo">
+            <h1>TESTE - {{ teste.titulo }}<br>Língua Gestual Portuguesa<br></h1>
+        </div>
+    </div>
+
+    <main class="conteudo-centralizado">
+        <div class="mensagem">
+            <p>Parabéns por terminares o teu  teste!</p>
+            <p>Cotação: {{ pontuacao }}/ {{ total_perguntas }}</p>
+
+{% if pontuacao == total_perguntas %}
+    <p class="feedback-verde">Excelente! Acertaste todas as perguntas na primeira tentativa!</p>
+{% elif pontuacao >= feedback_positivo %}
+    <p class="feedback-amarelo">Bom trabalho! Acertaste em várias tentativas, mas há espaço para melhorar.</p>
+{% else %}
+    <p class="feedback-vermelho">Não desistas! Tenta rever a matéria.</p>
+{% endif %}
+    
+            <div class="Boneco">
+                <img src="{% static 'utilizador/images/boneco_fim_teste.png' %}" alt="Boneco" class="boneco">
+            </div>
+        </div>
+    
+        <a href="{% url 'dashboard' %}" class="botao-final">
+            TERMINAR TESTE
+        </a>
+    </main>
+    

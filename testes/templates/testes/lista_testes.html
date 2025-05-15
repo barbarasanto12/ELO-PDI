@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Testes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'testes/lista_testes.css' %}">
+</head>
+<body>
+
+        <a href="{% url 'dashboard' %}">
+        <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo"></a>
+        <div class="circulo-container">
+            <div class="meio-circulo"></div>
+            <div class="texto-circulo">
+                <p class="texto-progresso">Ver progresso</p>
+                <p class="texto-lingua"><strong>Língua Gestual Portuguesa</strong></p>
+            </div>
+            
+        </div>
+
+
+        <div class="card-container">
+    {% for info in testes_info %}
+    <div class="card {% cycle 'cor1' 'cor2' 'cor3' 'cor4' %}">
+        <h3>Teste - Aula {{ forloop.counter }}</h3>
+        <p><strong>{{ info.teste.titulo }}</strong></p>
+        <p>Estado: 
+            {% if info.concluido %}
+                <span class="Completado"> Aula concluída</span>
+            {% else %}
+                <span class="Não iniciado"> Aula não concluída</span>
+            {% endif %}
+        </p>
+        <p>Cotação: 
+    {% if info.acertos is not None %}
+        {{ info.acertos }}/{{ info.total_perguntas }}
+    {% else %}
+        Ainda não realizado
+    {% endif %}
+</p>
+
+    </div>
+    {% endfor %}
+</div> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elo - Página Inicial</title>
+    <link rel="stylesheet" href="{% static 'utilizador/style.css' %}">
+
+</head>
+<body>
+
+    <div class="main-content">  
+
+        <div class="circles-container">
+            <div class="circle circle1"></div>
+            <div class="circle circle2"></div>
+            <div class="circle circle3"></div>
+        </div>
+
+        <header>
+      
+            <img src="{% static 'utilizador/images/boneco.png' %}" alt="Boneco" class="Boneco">
+            <img src="{% static 'utilizador/images/logo.png' %}" alt="Logotipo" class="logo">
+            <img src="{% static 'utilizador/images/bonecosentado.png' %}" alt="Sentado" class="Sentado">
+            <img src="{% static 'utilizador/images/slogan.png' %}" alt="Slogan" class="Slogan">
+        
+        </header>
+
+        <main>
+            <div class="botao-container">
+                <a href="{% url 'criar_conta' %}">
+                    <button><strong>CRIAR CONTA</strong></button> 
+                </a>
+                <a href="{% url 'login' %}">
+                    <button><strong>LOGIN</strong></button>
+                </a>
+            </div>
+
+            <section class="descricao">
+                <p><strong>gratuito.</strong></p>
+                <p><strong>simples.</strong></p>
+                <p><strong>didático.</strong></p>
+            </section>
+
+            <section class="info">
+                <p>Com o Elo serás capaz de aprender a língua</p>
+                <p>gestual portuguesa de forma grátis e simples!</p>
+                <p>Garantimos que aprendas o básico da LGP.</p>
+            </section>
+
+            <section class="frase-destaque">
+                <p>aprende quando quiseres</p>
+                <p>aprende onde quiseres</p>
+            </section>
+         </main>   
+     
+        <div class="footer-container">
+            <div class="footer">
+                <div class="footer-left">
+                   
+                    <a href="/quem-somos/"><strong>Quem somos?</strong></a>
+                    <a href="#"><strong>Página Inicial</strong></a>
+
+                </div>
+                <div class="footer-middle">
+                    &copy; 2025 Elo - Portugal, Coimbra,<br>
+                    Quinta Agrícola, Bencanta,<br>
+                    3045-601
+                </div>
+                <div class="footer-right">
+                    <img src="{% static 'utilizador/images/logoversao.png' %}" alt="logoversao" class="logoversao">
+                </div>
+            </div>
+
+        </main>  
+
+        <div class="faixa">
+            <img src="{% static 'utilizador/images/bandeiraportugal.png' %}" alt="Bandeira de Portugal" class="flag">
+            <span>LÍNGUA GESTUAL PORTUGUESA</span>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+

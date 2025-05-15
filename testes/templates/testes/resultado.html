@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <meta charset="UTF-8">
+    <title>{{ teste.titulo|default:teste.titulo }}- Resultado</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'testes/resultado.css' %}">
+</head>
+<body>
+
+    {% if not acertou %}
+        <!-- ERROU: mensagem e botão -->
+        <div class="circulo-container">
+            <div class="meio-circulo"></div>
+            <div class="texto-circulo">
+               <h1>TESTE - {{ teste.titulo }}<br>Língua Gestual Portuguesa</h1>
+
+            </div>
+        </div>
+        <div class="mensagem">
+            <p>Erraste :(</p>
+
+            {% if explicacao %}
+                <div class="explicacao">
+                    <p>{{ explicacao }}</p>
+                    <p>Tenta de novo e vais ver que consegues!</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="container-resposta">
+            <div class="left-content">
+               
+                <a href="{% url 'testes:perguntas' teste_id=pergunta.teste.id pergunta_numero=pergunta.numero %}">
+                    <button class="botao">Tentar de novo</button>
+                </a>
+            </div>
+            <div class="right-image">
+                <img src="{% static 'utilizador/images/boneco_triste.png' %}" alt="Boneco" class="boneco">
+            </div>
+        </div>
+
+    {% else %}
+        <!-- ACERTOU: mostrar próxima pergunta -->
+        <div class="circulo-container-CERTO">
+            <div class="meio-circulo-CERTO"></div>
+            <div class="texto-circulo-CERTO">
+                <h1>TESTE <br>Língua Gestual Portuguesa</h1>
+            </div>
+        </div>
+
+        <div class="mensagem-correta">
+            <p>Muito bem, acertaste! :)</p>
+            {% if explicacao %}
+                <div class="explicacao">
+                    <p>{{ explicacao }}</p>
+                    <p>Vamos seguir com a próxima questão!</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Próxima pergunta -->
+        <div class="question">
+            <h3>Questão nº {{ proxima_pergunta.numero }}</h3>
+            <p>{{ proxima_pergunta.texto }}</p>
+        </div>
+
+        {% if proxima_pergunta.video %}
+        <div class="question-video">
+            <video width="200" controls>
+                <source src="{{ proxima_pergunta.video.url }}" type="video/mp4">
+                O seu navegador não suporta vídeo.
+            </video>
+        </div>
+        {% endif %}
+
+        <div class="answers">
+            {% for resposta in proxima_respostas %}
+                <a href="{% url 'testes:verificar_resposta' resposta.id %}" class="answer-box">
+                    {% if resposta.imagem %}
+                        <img src="{{ resposta.imagem.url }}" alt="Opção {{ forloop.counter }}">
+                    {% elif resposta.video %}
+                        <video width="200" controls>
+                            <source src="{{ resposta.video.url }}" type="video/mp4">
+                            O seu navegador não suporta vídeo.
+                        </video>
+                    {% elif resposta.texto %}
+                        <p>{{ resposta.texto }}</p>
+                    {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="Boneco">
+            <img src="{% static 'utilizador/images/boneco_acertou.png' %}" alt="Boneco" class="boneco">
+        </div>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+.botao-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: 40px;
+    left: 30%;
+    transform: translateX(-50%);
+    top: 200px; 
+    gap:10px;
+    z-index: 2;
+}
+
+button {
+    background-color:#CDE9E8;
+    border: 2px solid black; 
+    color: rgb(0, 0, 0);
+    padding: 15px 30px;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    width: 400px;
+}
+
+button:hover {
+    background-color: #d0ece4;
+}
+
+
+
+.circles-container {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color:#10979036;
+}
+
+.circle1 {
+    width: 650px;
+    height: 538px;
+    top: 10px;
+    right: -180px;
+}
+
+.circle2 {
+    width: 250px;
+    height: 250px;
+    top: -130px;
+    right: -110px;
+    background-color: #B0D6D4;
+}
+
+.circle3 {
+    width: 120px;
+    height: 120px;
+    top: -130px;
+    right: 70px;
+    background-color:  #9ABDBB;
+}
+
+
+.faixa {
+    position: relative; 
+    width: 100%;
+    height: 20px; 
+    top:-790px;
+    background-color: #ffffff;
+    border-top: 2px solid #9ABDBB;
+    border-bottom: 2px solid #9ABDBB;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color:#626262;
+    overflow: hidden; 
+}
+  
+.flag {
+    width: 100px!important;
+    height: auto !important;
+    margin-right: 10px; 
+
+}
+
+.Boneco {
+    position: absolute;
+    top: 220px;
+    left: 25%;
+    transform: translateX(-50%) scale(0.5);
+    width: 900px;
+    height: auto;
+    z-index: 1;
+}
+    
+.descricao {
+    
+    position: absolute;
+    font-size: 2em;
+    top: 750px; 
+    left: 18%; 
+    transform: translateX(-50%);
+    color: #355a6c
+           
+}
+    
+
+.descricao p:nth-child(2) { 
+    margin-left: 30px; 
+}
+
+.descricao p:nth-child(3) { 
+    margin-left: 60px; 
+}  
+
+.info {
+    position: relative; 
+    margin-top: 800px;
+    text-align: right;
+    width: 500px; 
+    margin-left: auto;
+    margin-right: 10%; 
+    font-size: 1.2em;
+}
+
+.info p {
+    margin-top: 3px; 
+    font-size: 1em; 
+    font-weight: bold;
+    color: #355a6c;
+    line-height: 1.2;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.frase-destaque {
+    position: absolute;
+    top: 1000px; 
+    left: 45%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    font-weight: bold;
+    color: #355a6c;
+    margin: 0; 
+    text-align: center;
+    width: 100%;
+}
+
+.Slogan {
+    position: absolute; 
+    top: 220px; 
+    left: 82%;
+    transform: translateX(-50%);
+    width: 350px; 
+    height: auto; 
+    z-index: 10; /
+}
+
+.logo {
+    position: absolute;
+    top: 1px;
+    left: 6px;
+    width: 200px; 
+    height: auto;
+}
+.Sentado {
+    position: absolute;
+    transform: scale(0.3); 
+    width: 175px; 
+    height: auto;
+    top: 125%;
+    left: 45%; 
+    transform: translate(-50%, -50%); 
+    }
+
+.footer {
+      
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d2eceb;
+    padding: 15px 40px;
+       
+ }
+
+.footer-container {
+    padding-top: 400px; 
+}
+    
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    }
+    
+.footer-left a {
+    text-decoration: none;
+    color: black;
+    margin-bottom: 5px;
+    }
+    
+.footer-middle {
+    text-align: center;
+    }
+    
+.footer-right img {
+    height: 100px;
+    width: 100px;
+    }
+    
+
+.logoversao {
+    width: 150px; 
+    height: 200px;
+    }
+    
+* {
+        font-family: 'Sansation', sans-serif;
+    }
+    
